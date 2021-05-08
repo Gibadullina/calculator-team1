@@ -33,7 +33,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <form action="/webcalculator/AuthController" method="POST">
+                <form action="/webcalculator1/AuthController" method="POST">
                     <div class="mb-3">
                       <label for="emailInput" class="form-label">Ваш Логин:</label>
                       <input required name="username" type="text" class="form-control" id="emailInput" aria-describedby="emailHelp">
@@ -67,7 +67,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <form action="/webcalculator/RegisterController" method="POST">
+                <form action="/webcalculator1/RegisterController" method="POST">
                     <div class="mb-3">
                       <label for="emailInput" class="form-label">Ваш Логин</label>
                       <input required name="username" type="text" class="form-control" id="emailInput" aria-describedby="emailHelp">
