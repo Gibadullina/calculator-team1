@@ -1,0 +1,29 @@
+.mrot-check {
+    margin: 50px 0 50px 0;
+    font-size: 18px;
+}
+.root {
+    padding-top: 50px;
+}
+
+.container footer {
+    text-align: center;
+    margin-top: 138px;
+}
+
+.custom-select {
+    height: 38px;
+}
+
+.register_form, .login_form {
+	box-shadow: 0 0 10px 10xp;
+	width: 400px;
+	height: 300px;
+}
+
+.btn-user {
+	outline-color: green;
+}
+.btn-admin {
+	outline-color: red;
+}
