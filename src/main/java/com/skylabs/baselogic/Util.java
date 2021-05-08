@@ -1,15 +1,14 @@
 package com.skylabs.baselogic;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 import org.json.simple.JSONObject;
 
 public class Util {
+	
 	public static void SaveJson(JSONObject root, String path) {
 		try(FileWriter file = new FileWriter(path)) {
 			file.write(root.toJSONString());
