@@ -25,9 +25,11 @@ public class Util {
 
 	
 	public static void SaveJson(JSONObject root, String path) {
-		try(FileWriter file = new FileWriter(path)) {
+		try {
+			FileWriter file = new FileWriter(path);
 			file.write(root.toJSONString());
 			file.flush();
+			file.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
