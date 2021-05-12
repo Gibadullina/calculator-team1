@@ -9,11 +9,12 @@ var developers = "Калькулятор был разработан студе�
 
 var serverUrl = "/webcalculator1/CalculatorController";
 var exportUrl = "/webcalculator1/ExportController";
+var exitUrl = "/webcalculator1/ExitController";
 
 function linkEvents() {
     document.getElementById("submitButton").addEventListener("click", calculate);
     document.getElementById("actionNewFile").addEventListener("click", newFile);
-    document.getElementById("actionExit").addEventListener("click", calculate);
+    document.getElementById("actionExit").addEventListener("click", exit);
     document.getElementById("actionToExcel").addEventListener("click", toExcel);
     document.getElementById("actionHelp").addEventListener("click", (event) => showHelp(event, "Справка", manual));
     document.getElementById("actionDevelopers").addEventListener("click", (event) => showHelp(event, "Разработчики", developers));
@@ -101,6 +102,14 @@ function showHelp(event, arg0, arg1 = "") {
     document.getElementById("modalShowText").innerHTML = arg1
     document.getElementById("modalShowTitle").innerHTML = arg0;
     $("#modalShow").modal("toggle");
+}
+
+function exit() {
+	$.get(exitUrl, function(response) {
+		if (response == 1) {
+			window.location = "index.jsp";
+		} else showInfo("Что-то пошло не так...");
+    });
 }
 
 linkEvents()

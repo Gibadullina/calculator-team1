@@ -13,7 +13,9 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class Util {
 	
@@ -69,5 +71,52 @@ public class Util {
 		} finally {
 		    out.close();
 		}
+	}
+	
+	public static String[] GetProducts() {
+		try {
+			String[] entries;
+			JSONParser parser = new JSONParser();
+			JSONObject root = (JSONObject) parser.parse(Util.GetJson("data.json"));
+			JSONArray users = (JSONArray) root.get("entries");
+			
+			entries = new String[users.size()];
+			
+			int i = 0;
+			for(Object entry : users) {
+				JSONObject entryy = (JSONObject) entry;
+				entries[i] = entryy.get("name") + " - " + entryy.get("price") + " руб.";
+				i++;
+			}
+			
+			return entries;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String[] GetLocations() {
+		try {
+			String[] entries;
+			JSONParser parser = new JSONParser();
+			JSONObject root = (JSONObject) parser.parse(Util.GetJson("data_regions.json"));
+			JSONArray users = (JSONArray) root.get("entries");
+			
+			entries = new String[users.size()];
+			
+			int i = 0;
+			for(Object entry : users) {
+				JSONObject entryy = (JSONObject) entry;
+				entries[i] = entryy.get("name") + "";
+				i++;
+			}
+			return entries;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
 	}
 }

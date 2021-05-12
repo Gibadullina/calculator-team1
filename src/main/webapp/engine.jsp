@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.skylabs.baselogic.Util"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -68,10 +68,10 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                 	<c:if test="${admin}">
-                    	<button class="btn btn-outline-danger my-2 my-sm-0" type="submit" disabled>Администратор</button>
+                    	<button class="btn btn-outline-danger my-2 my-sm-0" type="submit" disabled>Администратор <%= session.getAttribute("username") %></button>
                     </c:if>
                     <c:if test="${!admin}">
-                    	<button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Пользователь</button>
+                    	<button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Пользователь <%= session.getAttribute("username") %></button>
                     </c:if>
                 </form>
                 </div>
@@ -93,9 +93,11 @@
                     <div class="form-group">
                         <label for="val">Расценка за единицу продукции:</label>
                         <select id="val" class="custom-select custom-select-sm">
-                            <c:forEach var="entry" items="${entries}" >
-						        <option>${entry}</option>
-						    </c:forEach>
+                            <%
+						    	for(String entry : Util.GetProducts()) {
+						    		out.println("<option>"+entry+"</option>");
+						    	}
+					        %>
                         </select>
                     </div>
                     <div class="form-group">
@@ -123,9 +125,11 @@
                     <div class="form-group">
                         <label for="location">Районный коэффициент:</label>
                         <select id="location" class="custom-select custom-select-sm">
-                        	<c:forEach var="entry" items="${entries_regions}" >
-						        <option>${entry}</option>
-						    </c:forEach>
+						    <%
+						    	for(String entry : Util.GetLocations()) {
+						    		out.println("<option>"+entry+"</option>");
+						    	}
+					        %>
                         </select>
                     </div>
                     <div class="form-group">

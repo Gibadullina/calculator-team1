@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ExitController</display-name>
+    <servlet-name>ExitController</servlet-name>
+    <servlet-class>com.skylabs.controllers.ExitController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExitController</servlet-name>
+    <url-pattern>/ExitController</url-pattern>
+  </servlet-mapping>
 </web-app>

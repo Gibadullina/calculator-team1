@@ -33,7 +33,7 @@ public class AuthController extends HttpServlet implements IController {
         super();
     }
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
@@ -50,46 +50,21 @@ public class AuthController extends HttpServlet implements IController {
 			if (check == 2) request.getSession().setAttribute("admin", "true");
 			else request.getSession().setAttribute("admin", "false");
 			
-			try {
-				String[] entries;
-				JSONParser parser = new JSONParser();
-				JSONObject root = (JSONObject) parser.parse(Util.GetJson("data.json"));
-				JSONArray users = (JSONArray) root.get("entries");
-				
-				entries = new String[users.size()];
-				
-				int i = 0;
-				for(Object entry : users) {
-					JSONObject entryy = (JSONObject) entry;
-					entries[i] = entryy.get("name") + " - " + entryy.get("price") + " руб.";
-					i++;
-				}
-				request.setAttribute("entries", entries);
-				
-				root = (JSONObject) parser.parse(Util.GetJson("data_regions.json"));
-				users = (JSONArray) root.get("entries");
-				
-				entries = new String[users.size()];
-				
-				i = 0;
-				for(Object entry : users) {
-					JSONObject entryy = (JSONObject) entry;
-					entries[i] = entryy.get("name") + "";
-					i++;
-				}
-				request.setAttribute("entries_regions", entries);
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
-			}
-	        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/engine.jsp");
-	        requestDispatcher.forward(request, response);
+			PrintWriter writer = response.getWriter();
+	        try {
+	        	request.getSession().setAttribute("login", true);
+	        	request.getSession().setAttribute("username", username);
+	        	writer.println("1");
+	        } finally {
+	            writer.close();  
+	        }
 		}
 		else {
 	        PrintWriter writer = response.getWriter();
 	        try {
 	        	writer.println("Неправильный логин или пароль!");
 	        	request.getSession().setAttribute("login", false);
+	        	request.getSession().setAttribute("username", "");
 	        } finally {
 	            writer.close();  
 	        }

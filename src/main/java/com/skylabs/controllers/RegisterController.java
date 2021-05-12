@@ -33,37 +33,29 @@ public class RegisterController extends HttpServlet implements IController {
         super();
     }
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String password1 = request.getParameter("password1");
 		
 		PrintWriter writer = response.getWriter();
 		
-		if (!password.equals(password1)) {
+		if (Register(username, password)) {
 			try {
-	        	writer.println("Пароли не совпадают!");
+	        	writer.println("Аккаунт с ником "+username+" успешно создан!");
 	        } finally {
 	            writer.close();  
 	        }
 		}
 		else {
-			if (Register(username, password)) {
-				ServletContext servletContext = getServletContext();
-		        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/index.jsp");
-		        requestDispatcher.forward(request, response);
-			}
-			else {
-		        try {
-		        	writer.println("Не удается создать аккаунт с логином "+username+"!");
-		        } finally {
-		            writer.close();  
-		        }
-			}
+	        try {
+	        	writer.println("Не удается создать аккаунт с логином "+username+"!");
+	        } finally {
+	            writer.close();  
+	        }
 		}
 	}
 	
