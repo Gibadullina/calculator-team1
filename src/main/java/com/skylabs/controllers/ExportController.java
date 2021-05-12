@@ -1,10 +1,7 @@
 package com.skylabs.controllers;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.http.HttpRequest;
 import java.text.DecimalFormat;
 
 import javax.servlet.ServletException;
@@ -59,7 +56,7 @@ public class ExportController extends HttpServlet implements IController {
 	    	String region_name = "", product_name = "";
         	
 	    	//Base logic
-        	double m, perc, c, nt, pt, lt, e = 0, k = 0;
+        	double perc, c, nt, pt, lt, e = 0, k = 0;
 	    	
 	    	perc = Double.parseDouble(String.valueOf(json.get("ndfl")));
 	    	pt = Double.parseDouble(String.valueOf(json.get("prize")));
