@@ -30,7 +30,6 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#" id="actionNewFile">Новый</a>
-                            <a class="dropdown-item" href="#" id="actionSaveFile">Сохранить</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" id="actionExit">Выйти</a>
                         </div>

@@ -85,7 +85,7 @@ function adminSave() {
 	
 	if (isOk) {
 	
-		$.post(adminUrl+"?type="+edit_type, JSON.stringify(root), function(response) {
+		$.post(adminUrl+"?type="+edit_type+"&secret_key="+secret_key+"&login"+login, JSON.stringify(root), function(response) {
 	        
 	       showHelp(null, "Информация", "Запрос обработан!");
 	    });

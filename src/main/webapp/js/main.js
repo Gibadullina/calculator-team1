@@ -1,4 +1,5 @@
 var secret_key = "";
+var login = "";
 
 var manual = "Данный калькулятор предназначен для расчёта сдельно-премиальной зарплаты.<br/>"
 + "Сдельно-премиальная оплата труда – это форма, которая предполагает не только исчисление прямого заработка с учетом фактических результатов труда, но и установление надбавок (премий) за выполнение и перевыполнение плановых показателей.</br>"
@@ -54,7 +55,7 @@ function calculate(event) {
 	console.log(JSON.stringify(data));	
 
 	if (validateData(data)) {
-	    $.post(serverUrl, JSON.stringify(data), function(response) {
+	    $.post(serverUrl+"?secret_key="+secret_key+"&login"+login, JSON.stringify(data), function(response) {
 	        showHelp(null, "Результат вычисления", response);
 	    });
 	} else {
@@ -76,8 +77,7 @@ function toExcel(event) {
 	var data = getData();
 	if (validateData(data)){
     	str = "?fio="+data.fio+"&state="+data.state+"&val="+data.val+"&production="+data.production+"&prize="+data.prize+"&count="+data.count+"&ndfl="+data.ndfl+"&normal="+data.normal+"&location="+data.location+"&mrot="+data.mrot;
-    	console.log(str)
-		downloadFile(exportUrl+str);
+		downloadFile(exportUrl+str+"&secret_key="+secret_key+"&login"+login);
 	} else {
 		showHelp(null, "Ошибка", "Пожалуйста, заполните все поля корректными данными.")
 	}
