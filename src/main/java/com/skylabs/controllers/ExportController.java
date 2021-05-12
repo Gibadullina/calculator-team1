@@ -21,10 +21,12 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.skylabs.baselogic.Solver;
+import com.skylabs.baselogic.Util;
 
 /**
  * Servlet implementation class ExportController
@@ -53,20 +55,46 @@ public class ExportController extends HttpServlet implements IController {
         
         try {
         	JustForWork json = new JustForWork(request);
-	    	
+        	JSONParser parser;
+	    	String region_name = "", product_name = "";
+        	
 	    	//Base logic
-	    	double m, perc, c, nt, pt, lt;
+        	double m, perc, c, nt, pt, lt, e = 0, k = 0;
 	    	
-	    	perc = Double.parseDouble((String)json.get("ndfl"));
-	    	c = Double.parseDouble((String)json.get("production"));
-	    	nt = Double.parseDouble((String)json.get("count"));
-	    	pt = Double.parseDouble((String)json.get("prize"));
-	    	lt = Double.parseDouble((String)json.get("normal"));
-	    	String indexProduct = (String)json.get("val");
-	    	String indexCoeff = (String)json.get("location");
-	    	String useMrot = (String)json.get("mrot");
+	    	perc = Double.parseDouble(String.valueOf(json.get("ndfl")));
+	    	pt = Double.parseDouble(String.valueOf(json.get("prize")));
+	    	c = Long.parseLong(String.valueOf(json.get("production")));
+	    	nt = Long.parseLong(String.valueOf(json.get("count")));
+	    	lt = Long.parseLong(String.valueOf(json.get("normal")));
+	    	long indexProduct = Long.parseLong(String.valueOf(json.get("val")));
+	    	long indexCoeff = Long.parseLong(String.valueOf(json.get("location")));
+	    	boolean useMrot = Boolean.parseBoolean(String.valueOf(json.get("mrot")));
 	    	
-	    	double result = Solver.Solve(perc, c, nt, pt, lt, Integer.parseInt(indexCoeff), Integer.parseInt(indexCoeff), Boolean.parseBoolean(useMrot));
+	    	try {
+			    parser = new JSONParser();
+				JSONObject root = (JSONObject) parser.parse(Util.GetJson("data.json"));
+				JSONArray users = (JSONArray) root.get("entries");
+
+				e = Double.parseDouble(((JSONObject)users.get((int)indexProduct)).get("price").toString());
+				product_name = (String)((JSONObject)users.get((int)indexProduct)).get("name");
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+	    	
+	    	try {
+			    parser = new JSONParser();
+				JSONObject root = (JSONObject) parser.parse(Util.GetJson("data_regions.json"));
+				JSONArray users = (JSONArray) root.get("entries");
+
+				k = Double.parseDouble(((JSONObject)users.get((int)indexCoeff)).get("price").toString());
+				region_name = (String)((JSONObject)users.get((int)indexCoeff)).get("name");
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+	    	
+	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, k, useMrot);
 	    	
 	    	Workbook book = new HSSFWorkbook();
 			Sheet sheet = book.createSheet();
@@ -136,12 +164,12 @@ public class ExportController extends HttpServlet implements IController {
 			cell0 = rowCoeff.createCell(0);
 			cell1 = rowCoeff.createCell(1);
 			cell0.setCellValue(new HSSFRichTextString("Районный коэффициент"));
-			cell1.setCellValue(new HSSFRichTextString(""+json.get("location")));
+			cell1.setCellValue(new HSSFRichTextString(region_name + " - " + k));
 			
 			cell0 = rowType.createCell(0);
 			cell1 = rowType.createCell(1);
 			cell0.setCellValue(new HSSFRichTextString("Расценка за единицу продукции (руб)"));
-			cell1.setCellValue(new HSSFRichTextString(""+json.get("val")));
+			cell1.setCellValue(new HSSFRichTextString(product_name+" - " + e));
 			
 			cell0 = rowMrot.createCell(0);
 			cell1 = rowMrot.createCell(1);

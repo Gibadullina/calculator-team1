@@ -41,7 +41,12 @@ public class EditController extends HttpServlet {
 			} else break;
 		}
 		
-		Util.SaveString("data.json", rawJson);
+		if (request.getParameter("type").equals("products")) {
+			Util.SaveString("data.json", rawJson);
+		}
+		else if (request.getParameter("type").equals("regions")) { 
+			Util.SaveString("data_regions.json", rawJson);
+		}
 		
 	}
 
@@ -50,9 +55,16 @@ public class EditController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
+		String json = "";
+		if (request.getParameter("type").equals("products")) {
+			json = Util.GetJson("data.json");
+		} else if (request.getParameter("type").equals("regions")) {
+			json = Util.GetJson("data_regions.json");
+		}
+		
 		PrintWriter writer = response.getWriter();
     	try {
-    		writer.println(Util.GetJson("data.json"));
+    		writer.println(json);
     	} 
     	finally {
     		writer.close();

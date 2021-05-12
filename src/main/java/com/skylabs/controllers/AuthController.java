@@ -64,6 +64,19 @@ public class AuthController extends HttpServlet implements IController {
 					i++;
 				}
 				request.setAttribute("entries", entries);
+				
+				root = (JSONObject) parser.parse(Util.GetJson("data_regions.json"));
+				users = (JSONArray) root.get("entries");
+				
+				entries = new String[users.size()];
+				
+				i = 0;
+				for(Object entry : users) {
+					JSONObject entryy = (JSONObject) entry;
+					entries[i] = entryy.get("name") + "";
+					i++;
+				}
+				request.setAttribute("entries_regions", entries);
 			}
 			catch(Exception ex) {
 				ex.printStackTrace();

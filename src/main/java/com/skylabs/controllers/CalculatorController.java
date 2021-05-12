@@ -31,13 +31,13 @@ public class CalculatorController extends HttpServlet implements IController {
 	    	JSONObject json = (JSONObject)parser.parse(rawJson);    	
 	    	
 	    	//Base logic
-	    	double m, perc, c, nt, pt, lt, e = 0;
+	    	double m, perc, c, nt, pt, lt, e = 0, k = 0;
 	    	
-	    	perc = Double.parseDouble((String)json.get("ndfl"));
-	    	c = Double.parseDouble((String)json.get("production"));
-	    	nt = Double.parseDouble((String)json.get("count"));
-	    	pt = Double.parseDouble((String)json.get("prize"));
-	    	lt = Double.parseDouble((String)json.get("normal"));
+	    	perc = Double.parseDouble(String.valueOf(json.get("ndfl")));
+	    	pt = Double.parseDouble(String.valueOf(json.get("prize")));
+	    	c = (long)json.get("production");
+	    	nt = (long)json.get("count");	  	
+	    	lt = (long)json.get("normal");
 	    	long indexProduct = (long)json.get("val");
 	    	long indexCoeff = (long)json.get("location");
 	    	boolean useMrot = (boolean)json.get("mrot");
@@ -53,7 +53,18 @@ public class CalculatorController extends HttpServlet implements IController {
 				ex.printStackTrace();
 			}
 	    	
-	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, (int)indexCoeff, useMrot);
+	    	try {
+			    parser = new JSONParser();
+				JSONObject root = (JSONObject) parser.parse(Util.GetJson("data_regions.json"));
+				JSONArray users = (JSONArray) root.get("entries");
+
+				k = Double.parseDouble(((JSONObject)users.get((int)indexCoeff)).get("price").toString());
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+	    	
+	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, k, useMrot);
 	    	
 	    	return "Заработная плата " + json.get("fio") + " составит " + result + " у.е.";
     	}

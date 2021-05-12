@@ -60,17 +60,19 @@
 	                            Редактировать
 	                        </a>
 	                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                            <a class="dropdown-item" href="#" id="actionToEdit">Показатели</a>
+	                            <a class="dropdown-item" href="#" id="actionToEditProductions">Продукция</a>
+	                            <div class="dropdown-divider"></div>
+	                            <a class="dropdown-item" href="#" id="actionToEditRegions">Коэффициенты</a>
 	                        </div>
                     	</li>
                     </c:if>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                 	<c:if test="${admin}">
-                    	<button class="btn btn-outline-success my-2 my-sm-0 btn-admin" type="submit" disabled>Администратор</button>
+                    	<button class="btn btn-outline-danger my-2 my-sm-0" type="submit" disabled>Администратор</button>
                     </c:if>
                     <c:if test="${!admin}">
-                    	<button class="btn btn-outline-success my-2 my-sm-0 btn-user" type="submit" disabled>Пользователь</button>
+                    	<button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Пользователь</button>
                     </c:if>
                 </form>
                 </div>
@@ -122,11 +124,9 @@
                     <div class="form-group">
                         <label for="location">Районный коэффициент:</label>
                         <select id="location" class="custom-select custom-select-sm">
-                            <option selected>Республика Башкортостан</option>
-                            <option selected>Ростовская область</option>
-                            <option selected>Республика Дагестан</option>
-                            <option selected>Республика Калмыкия</option>
-                            <option selected>Ставропольский край</option>
+                        	<c:forEach var="entry" items="${entries_regions}" >
+						        <option>${entry}</option>
+						    </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
@@ -171,7 +171,7 @@
         </div>
     </div>
     </c:if>
-    <c:if test="${!isLogin}">
+    <c:if test="${!login}">
     	<h2>Доступ запрещён!</h2>
     </c:if>
     <c:if test="${admin}">
@@ -205,6 +205,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+    <c:if test="${admin}">
+    	<script src="js/admin.js"></script>
+    </c:if>
 </div>
 </body>
 </html>
