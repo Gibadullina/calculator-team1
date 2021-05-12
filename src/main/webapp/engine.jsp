@@ -54,6 +54,16 @@
                             <a class="dropdown-item" href="#" id="actionDevelopers">Разработчики</a>
                         </div>
                     </li>
+                    <c:if test="${admin}">
+                    	<li class="nav-item dropdown">
+	                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                            Редактировать
+	                        </a>
+	                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                            <a class="dropdown-item" href="#" id="actionToEdit">Показатели</a>
+	                        </div>
+                    	</li>
+                    </c:if>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                 	<c:if test="${admin}">
@@ -163,6 +173,32 @@
     </c:if>
     <c:if test="${!isLogin}">
     	<h2>Доступ запрещён!</h2>
+    </c:if>
+    <c:if test="${admin}">
+    	<div class="modal fade" id="modalAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalShowTitle">Редактирование</h5> 
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" id="adminContent">
+                <div class="adminEntry form-group">
+                	<input required class="form-control" type="text" value="Компрессор" id="val_name_0">
+                	<input required class="form-control input-price" type="text" value="100" id="val_price_0">
+                	<button type="button" class="btn btn-danger">Удалить</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="adminAddNew">Добавить новый</button>
+            <button type="button" class="btn btn-secondary" id="adminSave" data-dismiss="modal">Закрыть и сохранить</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+        </div>
+    	</div>
     </c:if>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

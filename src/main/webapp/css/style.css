@@ -24,6 +24,14 @@
 .btn-user {
 	outline-color: green;
 }
-.btn-admin {
-	outline-color: red;
+
+.adminEntry {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 10px;
+}
+
+.input-price {
+	width: 100px;
+	margin: 0 10px 0 10px;
 }

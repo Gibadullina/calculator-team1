@@ -28,10 +28,10 @@ public class CalculatorController extends HttpServlet implements IController {
     String processData(String rawJson) {
     	try {
 	    	JSONParser parser = new JSONParser();
-	    	JSONObject json = (JSONObject)parser.parse(rawJson);
+	    	JSONObject json = (JSONObject)parser.parse(rawJson);    	
 	    	
 	    	//Base logic
-	    	double m, perc, c, nt, pt, lt;
+	    	double m, perc, c, nt, pt, lt, e = 0;
 	    	
 	    	perc = Double.parseDouble((String)json.get("ndfl"));
 	    	c = Double.parseDouble((String)json.get("production"));
@@ -42,7 +42,18 @@ public class CalculatorController extends HttpServlet implements IController {
 	    	long indexCoeff = (long)json.get("location");
 	    	boolean useMrot = (boolean)json.get("mrot");
 	    	
-	    	double result = Solver.Solve(perc, c, nt, pt, lt, (int)indexProduct, (int)indexCoeff, useMrot);
+	    	try {
+			    parser = new JSONParser();
+				JSONObject root = (JSONObject) parser.parse(Util.GetJson("data.json"));
+				JSONArray users = (JSONArray) root.get("entries");
+
+				e = Double.parseDouble(((JSONObject)users.get((int)indexProduct)).get("price").toString());
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+	    	
+	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, (int)indexCoeff, useMrot);
 	    	
 	    	return "Заработная плата " + json.get("fio") + " составит " + result + " у.е.";
     	}
