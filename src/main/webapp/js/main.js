@@ -13,7 +13,6 @@ var exportUrl = "/webcalculator1/ExportController";
 function linkEvents() {
     document.getElementById("submitButton").addEventListener("click", calculate);
     document.getElementById("actionNewFile").addEventListener("click", newFile);
-    document.getElementById("actionSaveFile").addEventListener("click", calculate);
     document.getElementById("actionExit").addEventListener("click", calculate);
     document.getElementById("actionToExcel").addEventListener("click", toExcel);
     document.getElementById("actionHelp").addEventListener("click", (event) => showHelp(event, "Справка", manual));
