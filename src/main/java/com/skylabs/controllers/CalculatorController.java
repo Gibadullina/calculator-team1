@@ -66,7 +66,7 @@ public class CalculatorController extends HttpServlet implements IController {
 	    	
 	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, k, useMrot);
 	    	
-	    	return "Заработная плата " + json.get("fio") + " составит " + result + " у.е.";
+	    	return "Р—Р°СЂР°Р±РѕС‚РЅР°СЏ РїР»Р°С‚Р° " + json.get("fio") + " СЃРѕСЃС‚Р°РІРёС‚ " + result + " Сѓ.Рµ.";
     	}
     	catch(Exception ex) {
     		return ex.getMessage();

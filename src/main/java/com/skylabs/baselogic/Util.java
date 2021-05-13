@@ -19,8 +19,8 @@ import org.json.simple.parser.JSONParser;
 
 public class Util {
 	
-	static final String DEFAULT_REGIONS = "{\"entries\":[{\"name\":\"Республика Башкортостан\",\"price\":1.15},{\"name\":\"Ростовская область\",\"price\":1.1},{\"name\":\"Республика Дагестан\",\"price\":1.12},{\"name\":\"Республика Калмыкия\",\"price\":1.3},{\"name\":\"Ставропольский край\",\"price\":1.15}]}";
-	static final String DEFAULT_PRODUCTS = "{\"entries\":[{\"name\":\"Компрессор\",\"price\":1000},{\"name\":\"Вентилятор\",\"price\":300},{\"name\":\"Турбина\",\"price\":\"400\"},{\"name\":\"Сопло\",\"price\":100},{\"name\":\"Смеситель\",\"price\":200}]}";
+	static final String DEFAULT_REGIONS = "{\"entries\":[{\"name\":\"Р РµСЃРїСѓР±Р»РёРєР° Р‘Р°С€РєРѕСЂС‚РѕСЃС‚Р°РЅ\",\"price\":1.15},{\"name\":\"Р РѕСЃС‚РѕРІСЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ\",\"price\":1.1},{\"name\":\"Р РµСЃРїСѓР±Р»РёРєР° Р”Р°РіРµСЃС‚Р°РЅ\",\"price\":1.12},{\"name\":\"Р РµСЃРїСѓР±Р»РёРєР° РљР°Р»РјС‹РєРёСЏ\",\"price\":1.3},{\"name\":\"РЎС‚Р°РІСЂРѕРїРѕР»СЊСЃРєРёР№ РєСЂР°Р№\",\"price\":1.15}]}";
+	static final String DEFAULT_PRODUCTS = "{\"entries\":[{\"name\":\"РљРѕРјРїСЂРµСЃСЃРѕСЂ\",\"price\":1000},{\"name\":\"Р’РµРЅС‚РёР»СЏС‚РѕСЂ\",\"price\":300},{\"name\":\"РўСѓСЂР±РёРЅР°\",\"price\":\"400\"},{\"name\":\"РЎРѕРїР»Рѕ\",\"price\":100},{\"name\":\"РЎРјРµСЃРёС‚РµР»СЊ\",\"price\":200}]}";
 	static final String DEFAULT_USERS = "{\"users\":[{\"password\":\"admin\",\"admin\":\"true\",\"username\":\"admin\"}]}";
 
 	
@@ -87,7 +87,7 @@ public class Util {
 			int i = 0;
 			for(Object entry : users) {
 				JSONObject entryy = (JSONObject) entry;
-				entries[i] = entryy.get("name") + " - " + entryy.get("price") + " руб.";
+				entries[i] = entryy.get("name") + " - " + entryy.get("price") + " СЂСѓР±.";
 				i++;
 			}
 			

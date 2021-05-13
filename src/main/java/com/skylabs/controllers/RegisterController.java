@@ -45,14 +45,14 @@ public class RegisterController extends HttpServlet implements IController {
 		
 		if (Register(username, password)) {
 			try {
-	        	writer.println("Аккаунт с ником "+username+" успешно создан!");
+	        	writer.println("РђРєРєР°СѓРЅС‚ СЃ РЅРёРєРѕРј "+username+" СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅ!");
 	        } finally {
 	            writer.close();  
 	        }
 		}
 		else {
 	        try {
-	        	writer.println("Не удается создать аккаунт с логином "+username+"!");
+	        	writer.println("РќРµ СѓРґР°РµС‚СЃСЏ СЃРѕР·РґР°С‚СЊ Р°РєРєР°СѓРЅС‚ СЃ Р»РѕРіРёРЅРѕРј "+username+"!");
 	        } finally {
 	            writer.close();  
 	        }

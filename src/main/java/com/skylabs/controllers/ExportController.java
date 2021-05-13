@@ -118,68 +118,68 @@ public class ExportController extends HttpServlet implements IController {
 			
 			cell0 = rowInfo.createCell(0);
 			cell1 = rowInfo.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Параметр"));
-			cell1.setCellValue(new HSSFRichTextString("Данные"));
+			cell0.setCellValue(new HSSFRichTextString("РџР°СЂР°РјРµС‚СЂ"));
+			cell1.setCellValue(new HSSFRichTextString("Р”Р°РЅРЅС‹Рµ"));
 			cell0.setCellStyle(cellStyle);
 			cell1.setCellStyle(cellStyle);
 			
 			cell0 = rowFio.createCell(0);
 			cell1 = rowFio.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("ФИО работника"));
+			cell0.setCellValue(new HSSFRichTextString("Р¤РРћ СЂР°Р±РѕС‚РЅРёРєР°"));
 			cell1.setCellValue(new HSSFRichTextString((String)json.get("fio")));
 			
 			cell0 = rowPost.createCell(0);
 			cell1 = rowPost.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Должность работника"));
+			cell0.setCellValue(new HSSFRichTextString("Р”РѕР»Р¶РЅРѕСЃС‚СЊ СЂР°Р±РѕС‚РЅРёРєР°"));
 			cell1.setCellValue(new HSSFRichTextString((String)json.get("state")));
 			
 			cell0 = rowCount.createCell(0);
 			cell1 = rowCount.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Изготовленная продукция (ед)"));
+			cell0.setCellValue(new HSSFRichTextString("РР·РіРѕС‚РѕРІР»РµРЅРЅР°СЏ РїСЂРѕРґСѓРєС†РёСЏ (РµРґ)"));
 			cell1.setCellValue(new HSSFRichTextString((String)json.get("production")));
 			
 			cell0 = rowPrize.createCell(0);
 			cell1 = rowPrize.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Премия (руб)"));
+			cell0.setCellValue(new HSSFRichTextString("РџСЂРµРјРёСЏ (СЂСѓР±)"));
 			cell1.setCellValue(new HSSFRichTextString((String)json.get("prize")));
 			
 			cell0 = rowNdfl.createCell(0);
 			cell1 = rowNdfl.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("НДФЛ %"));
+			cell0.setCellValue(new HSSFRichTextString("РќР”Р¤Р› %"));
 			cell1.setCellValue(new HSSFRichTextString((String)json.get("ndfl")));
 			
 			cell0 = rowNorma.createCell(0);
 			cell1 = rowNorma.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Норма (ед.)"));
+			cell0.setCellValue(new HSSFRichTextString("РќРѕСЂРјР° (РµРґ.)"));
 			cell1.setCellValue(new HSSFRichTextString((String)json.get("normal")));
 			
 			cell0 = rowProduct.createCell(0);
 			cell1 = rowProduct.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Единица товара для премии (ед)"));
+			cell0.setCellValue(new HSSFRichTextString("Р•РґРёРЅРёС†Р° С‚РѕРІР°СЂР° РґР»СЏ РїСЂРµРјРёРё (РµРґ)"));
 			cell1.setCellValue(new HSSFRichTextString((String)json.get("count")));
 			
 			cell0 = rowCoeff.createCell(0);
 			cell1 = rowCoeff.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Районный коэффициент"));
+			cell0.setCellValue(new HSSFRichTextString("Р Р°Р№РѕРЅРЅС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚"));
 			cell1.setCellValue(new HSSFRichTextString(region_name + " - " + k));
 			
 			cell0 = rowType.createCell(0);
 			cell1 = rowType.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Расценка за единицу продукции (руб)"));
+			cell0.setCellValue(new HSSFRichTextString("Р Р°СЃС†РµРЅРєР° Р·Р° РµРґРёРЅРёС†Сѓ РїСЂРѕРґСѓРєС†РёРё (СЂСѓР±)"));
 			cell1.setCellValue(new HSSFRichTextString(product_name+" - " + e));
 			
 			cell0 = rowMrot.createCell(0);
 			cell1 = rowMrot.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Учитывался МРОТ?"));
-			cell1.setCellValue((String)json.get("mrot") == "true" ? "Да" : "Нет");
+			cell0.setCellValue(new HSSFRichTextString("РЈС‡РёС‚С‹РІР°Р»СЃСЏ РњР РћРў?"));
+			cell1.setCellValue((String)json.get("mrot") == "true" ? "Р”Р°" : "РќРµС‚");
 			
 			cell0 = rowSalary.createCell(0);
 			cell1 = rowSalary.createCell(1);
-			cell0.setCellValue(new HSSFRichTextString("Зарплата"));
+			cell0.setCellValue(new HSSFRichTextString("Р—Р°СЂРїР»Р°С‚Р°"));
 			
 			DecimalFormat df = new DecimalFormat("#.##");
 			
-			cell1.setCellValue(df.format(result)+" руб");
+			cell1.setCellValue(df.format(result)+" СЂСѓР±");
 			
 			sheet.autoSizeColumn(0);
 			sheet.autoSizeColumn(1);

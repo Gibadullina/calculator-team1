@@ -51,7 +51,7 @@ public class AuthController extends HttpServlet implements IController {
 		else {
 	        PrintWriter writer = response.getWriter();
 	        try {
-	        	writer.println("Неправильный логин или пароль!");
+	        	writer.println("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ!");
 	        	request.getSession().setAttribute("login", false);
 	        	request.getSession().setAttribute("username", "");
 	        } finally {
