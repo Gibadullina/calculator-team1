@@ -29,7 +29,7 @@ import com.skylabs.baselogic.Util;
  * Servlet implementation class ExportController
  */
 @WebServlet("/ExportController")
-public class ExportController extends HttpServlet implements IController {
+public class ExportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	class JustForWork {

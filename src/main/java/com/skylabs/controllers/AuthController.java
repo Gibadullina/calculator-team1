@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
 import com.skylabs.baselogic.Util;
 
 @WebServlet("/AuthController")
-public class AuthController extends HttpServlet implements IController {
+public class AuthController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public AuthController() {

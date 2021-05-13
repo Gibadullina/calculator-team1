@@ -1,14 +1,7 @@
 package com.skylabs.baselogic;
 
 public class Solver {
-	//static double[] k = {1.15, 1.1, 1.12, 1.3, 1.15 }; //районные коэф
-	//static double[] e = {1000, 300, 500, 100, 200}; //стоимость детали
-	
 	static final double mrot = 12130d;
-	
-	private void LoadStates(String path) {
-		
-	}
 	
 	public static double Solve(double perc, double c, double nt, double pt, double lt, double e, double k, boolean useMrot) {
 		double m, result;

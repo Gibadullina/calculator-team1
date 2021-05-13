@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Авторизация</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/auth.css">
 </head>
@@ -39,7 +38,7 @@
                       <input required name="username" type="text" class="form-control" id="loginInput" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                      <label for="exampleInputPassword1" class="form-label">Пароль:</label>
                       <input required name="password" type="password" class="form-control" id="PasswordLoginInput">
                     </div>
                     <div class="mb-3 form-check">
@@ -69,15 +68,15 @@
             <div class="modal-body">
                 <form action="#" method="POST">
                     <div class="mb-3">
-                      <label for="emailInput" class="form-label">Ваш Логин</label>
+                      <label for="emailInput" class="form-label">Ваш Логин:</label>
                       <input required name="username" type="text" class="form-control" id="registerInput" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                      <label for="exampleInputPassword1" class="form-label">Пароль:</label>
                       <input required name="password" type="password" class="form-control" id="passwordInput">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Повторить пароль</label>
+                      <label for="exampleInputPassword1" class="form-label">Повторить пароль:</label>
                       <input required name="password1" type="password" class="form-control" id="passwordInputRepeat">
                     </div>
                     <button type="submit" class="btn btn-primary" id="btnRegisterAction">Создать аккаунт</button>

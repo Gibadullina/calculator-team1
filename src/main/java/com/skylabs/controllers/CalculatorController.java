@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/CalculatorController")
-public class CalculatorController extends HttpServlet implements IController {
+public class CalculatorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public CalculatorController() {
