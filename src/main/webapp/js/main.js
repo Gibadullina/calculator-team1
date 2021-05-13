@@ -7,9 +7,9 @@ var manual = "Данный калькулятор предназначен дл�
 + "Расчёт осуществляется с учётом <strong>МРОТ, НДФЛ.</strong>";
 var developers = "Калькулятор был разработан студентами группы <strong>ПИ-221</strong>: " + "<br/>Рафиков Данил" +"<br/>Катасонов Серафим" +"<br/>Гибадуллина Элина" +"<br/>Газин Даниэль";
 
-var serverUrl = "/CalculatorController";
-var exportUrl = "/ExportController";
-var exitUrl = "/ExitController";
+var serverUrl = "webcalculator1//CalculatorController";
+var exportUrl = "webcalculator1/ExportController";
+var exitUrl = "webcalculator1//ExitController";
 
 function linkEvents() {
     document.getElementById("submitButton").addEventListener("click", calculate);
