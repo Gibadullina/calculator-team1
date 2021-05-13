@@ -16,8 +16,8 @@
     <div class="container content" id="authRoot">
         <h2>Калькулятор</h2>
         <div class="buttons">
-            <button class="btn btn-primary" id="btnRegister">Регистрация</button>
-            <button class="btn btn-primary" id="btnAuth">Авторизация</button>
+        	<button class="btn btn-primary" id="btnRegister">Регистрация</button>
+        	<button class="btn btn-primary" id="btnAuth">Авторизация</button>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                       <input required name="username" type="text" class="form-control" id="loginInput" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Пароль:</label>
+                      <label for="PasswordLoginInput" class="form-label">Пароль:</label>
                       <input required name="password" type="password" class="form-control" id="PasswordLoginInput">
                     </div>
                     <div class="mb-3 form-check">
@@ -49,7 +49,7 @@
                   </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
             <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
@@ -72,14 +72,14 @@
                       <input required name="username" type="text" class="form-control" id="registerInput" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Пароль:</label>
+                      <label for="passwordInput" class="form-label">Пароль:</label>
                       <input required name="password" type="password" class="form-control" id="passwordInput">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Повторить пароль:</label>
+                      <label for="passwordInputRepeat" class="form-label">Повторить пароль:</label>
                       <input required name="password1" type="password" class="form-control" id="passwordInputRepeat">
                     </div>
-                    <button type="submit" class="btn btn-primary" id="btnRegisterAction">Создать аккаунт</button>
+                    <button type="submit" class="btn btn-primary" id="btnRegisterAction">Создать аккаунт</button>
                   </form>
             </div>
             <div class="modal-footer">
@@ -104,7 +104,7 @@
                 <p id="modalShowText"></p>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            	<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
         </div>
