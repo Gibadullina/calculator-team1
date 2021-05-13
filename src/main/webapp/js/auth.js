@@ -1,6 +1,7 @@
 var login_url = "/webcalculator1/AuthController";
 var register_url = "/webcalculator1/RegisterController";
 
+
 $("#btnRegister").click(function(event) {
     $("#modalRegister").modal("toggle");
 });
