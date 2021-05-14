@@ -1,5 +1,5 @@
-var login_url = "/AuthController";
-var register_url = "/RegisterController";
+var login_url = "/WebCalc/AuthController";
+var register_url = "/WebCalc/RegisterController";
 
 
 $("#btnRegister").click(function(event) {
