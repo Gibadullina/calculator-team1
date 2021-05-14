@@ -1,0 +1,1 @@
+web: java -jar target/webcalculator1-1.0.jar
