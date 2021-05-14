@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.file.Path;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,7 +27,7 @@ public class Util {
 	
 	public static void SaveJson(JSONObject root, String path) {
 		try {
-			FileWriter file = new FileWriter("webapps/"+path);
+			FileWriter file = new FileWriter(path);
 			file.write(root.toJSONString());
 			file.flush();
 			file.close();
@@ -38,14 +39,14 @@ public class Util {
 	public static String GetJson(String path) {	
 		String json = "";
 		try {
-			File f = new File(path);
+			File f = new File(Path.of(path).toString());
 			if (!f.exists()) {
-				if (path.equals("webapps/users.json")) SaveString("webapps/users.json", DEFAULT_USERS);
-				else if (path.equals("webapps/data.json")) SaveString("webapps/data.json", DEFAULT_PRODUCTS);
-				else if (path.equals("webapps/data_regions.json")) SaveString("webapps/data_regions.json", DEFAULT_REGIONS);
+				if (path.equals("users.json")) SaveString("users.json", DEFAULT_USERS);
+				else if (path.equals("data.json")) SaveString("data.json", DEFAULT_PRODUCTS);
+				else if (path.equals("data_regions.json")) SaveString("data_regions.json", DEFAULT_REGIONS);
 			}
 			try {
-				BufferedReader buff = new BufferedReader(new InputStreamReader(new FileInputStream("webapps/"+path), "UTF-8"));
+				BufferedReader buff = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
 				String line = "";
 	
 			    while((line = buff.readLine()) != null) {
@@ -67,7 +68,7 @@ public class Util {
 	
 	public static void SaveString(String path, String str) throws IOException {
 		Writer out = new BufferedWriter(new OutputStreamWriter(
-		    new FileOutputStream("webapps/"+path), "UTF-8"));
+		    new FileOutputStream(path), "UTF-8"));
 		try {
 		    out.write(str);
 		} finally {
@@ -79,7 +80,7 @@ public class Util {
 		try {
 			String[] entries;
 			JSONParser parser = new JSONParser();
-			JSONObject root = (JSONObject) parser.parse(Util.GetJson("webapps/data.json"));
+			JSONObject root = (JSONObject) parser.parse(Util.GetJson("data.json"));
 			JSONArray users = (JSONArray) root.get("entries");
 			
 			entries = new String[users.size()];
@@ -103,7 +104,7 @@ public class Util {
 		try {
 			String[] entries;
 			JSONParser parser = new JSONParser();
-			JSONObject root = (JSONObject) parser.parse(Util.GetJson("webapps/data_regions.json"));
+			JSONObject root = (JSONObject) parser.parse(Util.GetJson("data_regions.json"));
 			JSONArray users = (JSONArray) root.get("entries");
 			
 			entries = new String[users.size()];
