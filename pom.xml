@@ -10,7 +10,6 @@
  		<finalName>WebCalc</finalName>
   		<defaultGoal>package</defaultGoal>
     
-		<pluginManagement>
             <plugins>
                 <plugin>
 				    <groupId>org.apache.maven.plugins</groupId>
@@ -48,13 +47,13 @@
 		                                <destFileName>webapp-runner.jar</destFileName>
 		                            </artifactItem>
 		                        </artifactItems>
+		                        <outputDirectory>artifacts</outputDirectory>
 		                    </configuration>
 		                </execution>
 		            </executions>
 		        </plugin>
                 
             </plugins>
-        </pluginManagement>
 </build>
   
 	<dependencies>
@@ -92,6 +91,13 @@
 	    <groupId>jstl</groupId>
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
+	</dependency>
+   
+   	<dependency>
+	    <groupId>com.github.jsimone</groupId>
+	    <artifactId>webapp-runner</artifactId>
+	    <version>9.0.27.1</version>
+	    <scope>provided</scope>
 	</dependency>
    
     </dependencies> 
