@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.skylabs</groupId>
   <artifactId>webcalculator1</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
- <!--   <packaging>war</packaging> -->
-  <name>webcalculator1</name>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+  <name>team1-calculator</name>
   
  <build>
-  <finalName>Calculate</finalName>
+ <finalName>WebCalc</finalName>
   <defaultGoal>package</defaultGoal>
     
 <pluginManagement>

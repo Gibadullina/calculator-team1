@@ -1,1 +1,1 @@
-web: java -jar target/webcalculator1-1.0.jar
+web: java $JAVA_OPTS -jar artifacts/webapp-runner.jar --port $PORT artifacts/WebCalc.war
