@@ -6,14 +6,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class RegisterTest {
-
+    static RegisterController testRegister;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		testRegister= new RegisterController ();
 	}
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		assertFalse(testRegister.Register("admin", "admin"));
 	}
 
 }
