@@ -9,15 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import com.skylabs.baselogic.Util;
 
-/**
- * Servlet implementation class EditController
- */
+//Сервлет для редактирования коэффициентов регионов и продукции
 public class EditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,6 +20,7 @@ public class EditController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    //Обработка запроса, когда пользователь внес данные
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -35,40 +30,36 @@ public class EditController extends HttpServlet {
 		String rawJson = "";
 		
 		while(true) {
-			String line = reader.readLine();
+			String line = reader.readLine(); //Считываем из тела запроса данные
 			if (line != null) {
 				rawJson += line;
 			} else break;
 		}
 		
-		if (request.getParameter("type").equals("products")) {
+		if (request.getParameter("type").equals("products")) { //Если редактировалась продукция, то сохраняем ее новые коэфициенты
 			Util.SaveString("data.json", rawJson);
 		}
-		else if (request.getParameter("type").equals("regions")) { 
+		else if (request.getParameter("type").equals("regions")) { //Или сохраняем новые данные по регионам
 			Util.SaveString("data_regions.json", rawJson);
 		}
 		
 	}
 
+	//Если пользователь хочет получить список региональных коэфициентов и продукции перед редактированием
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
 		String json = "";
-		if (request.getParameter("type").equals("products")) {
+		if (request.getParameter("type").equals("products")) { //Если продукция, то берем данные о ней
 			json = Util.GetJson("data.json");
-		} else if (request.getParameter("type").equals("regions")) {
+		} else if (request.getParameter("type").equals("regions")) {//Или региональные коэффициенты
 			json = Util.GetJson("data_regions.json");
 		}
 		
 		PrintWriter writer = response.getWriter();
-    	try {
-    		writer.println(json);
-    	} 
-    	finally {
-    		writer.close();
-    	}
+    	writer.println(json); //Пишем результат пользователю
 	}
 
 }

@@ -1,3 +1,10 @@
+/*
+Данный JS файл необходим для работы основного приложения. Здесь происходит
+основная работа по обеспечению интерактивности и получению необходимых
+результатов для пользователя.
+*/
+
+//Переменные для работы
 var secret_key = "";
 var login = "";
 
@@ -7,10 +14,12 @@ var manual = "Данный калькулятор предназначен дл�
 + "Расчёт осуществляется с учётом <strong>МРОТ, НДФЛ.</strong>";
 var developers = "Калькулятор был разработан студентами группы <strong>ПИ-221</strong>: " + "<br/>Рафиков Данил" +"<br/>Катасонов Серафим" +"<br/>Гибадуллина Элина" +"<br/>Газин Даниэль";
 
+//URL адреса сервлетов сервера
 var serverUrl = "/WebCalc/CalculatorController";
 var exportUrl = "/WebCalc/ExportController";
 var exitUrl = "/WebCalc/ExitController";
 
+//Линковка событий с обработчиками
 function linkEvents() {
     document.getElementById("submitButton").addEventListener("click", calculate);
     document.getElementById("actionNewFile").addEventListener("click", newFile);
@@ -20,7 +29,7 @@ function linkEvents() {
     document.getElementById("actionDevelopers").addEventListener("click", (event) => showHelp(event, "Разработчики", developers));
 }
 
-
+//Получаем данные из форм
 function getData() {
     var data = {
         fio: document.getElementById("fio").value,
@@ -38,6 +47,7 @@ function getData() {
     return data;
 }
 
+//Валидация данных из форм. Чтобы не было пустых строк и неправильных данных для будущих вычислений на стороне сервера
 function validateData(data) {
 	if (!data.fio || !data.state)
 		return false;
@@ -48,11 +58,11 @@ function validateData(data) {
 	return true;
 }
 
+//Запрос на вычисление заработной платы на основе введенных данных
 function calculate(event) {
     event.preventDefault();
 
 	var data = getData();
-	console.log(JSON.stringify(data));	
 
 	if (validateData(data)) {
 	    $.post(serverUrl+"?secret_key="+secret_key+"&login"+login, JSON.stringify(data), function(response) {
@@ -63,6 +73,7 @@ function calculate(event) {
 	}
 }
 
+//Очистка формы
 function newFile(event) {
     document.getElementById("fio").value = "";
     document.getElementById("state").value = "";
@@ -73,6 +84,7 @@ function newFile(event) {
     document.getElementById("normal").value = "";
 }
 
+//Запрос на преобразование данных формы в Excel файл
 function toExcel(event) {
 	var data = getData();
 	if (validateData(data)){
@@ -83,6 +95,7 @@ function toExcel(event) {
 	}
 }
 
+//Дополнительная функция для скачивания файлов с сервера
 function downloadFile(urlToSend) {
     var req = new XMLHttpRequest();
     req.open("GET", urlToSend, true);
@@ -98,12 +111,14 @@ function downloadFile(urlToSend) {
     req.send();
 }
 
+//Вызов служебного модального окна с информацией
 function showHelp(event, arg0, arg1 = "") {
     document.getElementById("modalShowText").innerHTML = arg1
     document.getElementById("modalShowTitle").innerHTML = arg0;
     $("#modalShow").modal("toggle");
 }
 
+//Запрос на выход из сессии
 function exit() {
 	$.get(exitUrl, function(response) {
 		if (response == 1) {
@@ -112,4 +127,5 @@ function exit() {
     });
 }
 
+//Линковка событий с обработчиками
 linkEvents()

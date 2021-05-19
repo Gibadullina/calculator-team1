@@ -25,13 +25,12 @@ import org.json.simple.parser.JSONParser;
 import com.skylabs.baselogic.Solver;
 import com.skylabs.baselogic.Util;
 
-/**
- * Servlet implementation class ExportController
- */
+//Сервлет для экспорта данных в Excel
 @WebServlet("/ExportController")
 public class ExportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//Вспомогательный класс-обертка
 	class JustForWork {
 		HttpServletRequest request;
 		public JustForWork(HttpServletRequest request) {
@@ -43,12 +42,13 @@ public class ExportController extends HttpServlet {
 		}
 	}
 	
+	//Процесс обработки запроса
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     
-        response.setContentType("text/plain");
-        response.setHeader("Content-disposition", "attachment; filename=result.xls");
+        response.setContentType("text/plain"); //Устанавливаем MIME-тип
+        response.setHeader("Content-disposition", "attachment; filename=result.xls"); //Устанавливаем тип контента как вложение с названием файла
         
         try {
         	JustForWork json = new JustForWork(request);
@@ -58,6 +58,7 @@ public class ExportController extends HttpServlet {
 	    	//Base logic
         	double perc, c, nt, pt, lt, e = 0, k = 0;
 	    	
+        	//Получаем данные последовательно
 	    	perc = Double.parseDouble(String.valueOf(json.get("ndfl")));
 	    	pt = Double.parseDouble(String.valueOf(json.get("prize")));
 	    	c = Long.parseLong(String.valueOf(json.get("production")));
@@ -93,9 +94,11 @@ public class ExportController extends HttpServlet {
 	    	
 	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, k, useMrot);
 	    	
-	    	Workbook book = new HSSFWorkbook();
-			Sheet sheet = book.createSheet();
+	    	//Обработка для Excel файла
+	    	Workbook book = new HSSFWorkbook(); //Создание workbook
+			Sheet sheet = book.createSheet(); //Создание страницы
 			
+			//Создаем строки и заполняем их колонки данными
 			Row rowInfo = sheet.createRow(0);
 			Row rowFio = sheet.createRow(1);
 			Row rowPost = sheet.createRow(2);
@@ -184,9 +187,9 @@ public class ExportController extends HttpServlet {
 			sheet.autoSizeColumn(0);
 			sheet.autoSizeColumn(1);
 	    	
-			 OutputStream out = response.getOutputStream();
-			 book.write(out);
-			 book.close();
+			OutputStream out = response.getOutputStream(); //Возвращаем поток данных запроса
+			book.write(out); //Записываем наши данные о файле в выходной поток
+			book.close();
 		
         }
         catch(Exception ex) {

@@ -3,6 +3,7 @@ package com.skylabs.baselogic;
 public class Solver {
 	static final double mrot = 12130d;
 	
+	//Расчёт по формуле
 	public static double Solve(double perc, double c, double nt, double pt, double lt, double e, double k, boolean useMrot) {
 		double m, result;
 		result = 0;
@@ -13,7 +14,7 @@ public class Solver {
 		else { // иначе считаем без учета премии
 			m = e*c;
 		}
-		if (useMrot && m < mrot) {
+		if (useMrot && m < mrot) { //Учет МРОТ
 			result = mrot*k*(1-perc/100);
 		} else {
 			result = m*k*(1-perc/100);

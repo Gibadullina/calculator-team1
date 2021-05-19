@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+//Сервлет для расчётов
 @WebServlet("/CalculatorController")
 public class CalculatorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,14 +25,16 @@ public class CalculatorController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    //Процесс обработки данных
     String processData(String rawJson) {
     	try {
 	    	JSONParser parser = new JSONParser();
-	    	JSONObject json = (JSONObject)parser.parse(rawJson);    	
+	    	JSONObject json = (JSONObject)parser.parse(rawJson); //Парсим данные в нужный формат   	
 	    	
 	    	//Base logic
-	    	double m, perc, c, nt, pt, lt, e = 0, k = 0;
+	    	double perc, c, nt, pt, lt, e = 0, k = 0;
 	    	
+	    	//Последовательно берем данные из JSON
 	    	perc = Double.parseDouble(String.valueOf(json.get("ndfl")));
 	    	pt = Double.parseDouble(String.valueOf(json.get("prize")));
 	    	c = (long)json.get("production");
@@ -42,6 +44,7 @@ public class CalculatorController extends HttpServlet {
 	    	long indexCoeff = (long)json.get("location");
 	    	boolean useMrot = (boolean)json.get("mrot");
 	    	
+	    	//Здесь получаем коэффициенты по продукции и регионам из data.json и data_regions.json посредством дополнительных парсингов
 	    	try {
 			    parser = new JSONParser();
 				JSONObject root = (JSONObject) parser.parse(Util.GetJson("data.json"));
@@ -64,7 +67,7 @@ public class CalculatorController extends HttpServlet {
 				ex.printStackTrace();
 			}
 	    	
-	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, k, useMrot);
+	    	double result = Solver.Solve(perc, c, nt, pt, lt, e, k, useMrot); //Делаем расчёт
 	    	
 	    	return "Заработная плата " + json.get("fio") + " составит " + result + " у.е.";
     	}
@@ -73,22 +76,23 @@ public class CalculatorController extends HttpServlet {
     	}
     }
 
+    //Обработка запроса POST
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
+		request.setCharacterEncoding("UTF-8");	//Нормализуем кодировку
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
+		
 		BufferedReader reader = request.getReader();
 		String result = "";
 		
 		while(true) {
-			String line = reader.readLine();
+			String line = reader.readLine(); //Берем данные из тела запроса
 			if (line != null) {
 				result += line;
 			} else break;
 		}
 		try {
-			result = processData(result);
+			result = processData(result); //Высчитываем заработную плату
 		}
 		catch(Exception ex) {
 			result = ex.getMessage();
@@ -96,7 +100,7 @@ public class CalculatorController extends HttpServlet {
 		
 		PrintWriter writer = response.getWriter();
     	try {
-    		writer.println(result);
+    		writer.println(result); //Отправляем результат
     	} 
     	finally {
     		writer.close();

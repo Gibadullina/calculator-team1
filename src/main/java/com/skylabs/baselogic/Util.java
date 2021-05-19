@@ -4,13 +4,11 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.file.Path;
 
@@ -18,13 +16,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class Util {
+public class Util { //Вспомогательный класс для работы с IO
 	
+	//Готовые строки для файлов JSON, если их нет в ФС
 	static final String DEFAULT_REGIONS = "{\"entries\":[{\"name\":\"Республика Башкортостан\",\"price\":1.15},{\"name\":\"Ростовская область\",\"price\":1.1},{\"name\":\"Республика Дагестан\",\"price\":1.12},{\"name\":\"Республика Калмыкия\",\"price\":1.3},{\"name\":\"Ставропольский край\",\"price\":1.15}]}";
 	static final String DEFAULT_PRODUCTS = "{\"entries\":[{\"name\":\"Компрессор\",\"price\":1000},{\"name\":\"Вентилятор\",\"price\":300},{\"name\":\"Турбина\",\"price\":\"400\"},{\"name\":\"Сопло\",\"price\":100},{\"name\":\"Смеситель\",\"price\":200}]}";
 	static final String DEFAULT_USERS = "{\"users\":[{\"password\":\"admin\",\"admin\":\"true\",\"username\":\"admin\"}]}";
 
-	
+	//Сохраняем корневой узел JSON в файл по указанному пути
 	public static void SaveJson(JSONObject root, String path) {
 		try {
 			FileWriter file = new FileWriter(path);
@@ -36,16 +35,18 @@ public class Util {
 		}
 	}
 	
+	//Получаем строку в виде сырого JSON по указанному пути
 	public static String GetJson(String path) {	
 		String json = "";
 		try {
 			File f = new File(Path.of(path).toString());
-			if (!f.exists()) {
+			if (!f.exists()) { //В случае, если нет определеного файла, мы его сначала создадим на основе шаблонов
 				if (path.equals("users.json")) SaveString("users.json", DEFAULT_USERS);
 				else if (path.equals("data.json")) SaveString("data.json", DEFAULT_PRODUCTS);
 				else if (path.equals("data_regions.json")) SaveString("data_regions.json", DEFAULT_REGIONS);
 			}
-			try {
+			try { //Считывание данных
+				@SuppressWarnings("resource")
 				BufferedReader buff = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
 				String line = "";
 	
@@ -66,6 +67,7 @@ public class Util {
 		}
 	}
 	
+	//Сохранение строки в файл по указанному пути
 	public static void SaveString(String path, String str) throws IOException {
 		Writer out = new BufferedWriter(new OutputStreamWriter(
 		    new FileOutputStream(path), "UTF-8"));
@@ -76,6 +78,7 @@ public class Util {
 		}
 	}
 	
+	//Получение списка продуктов
 	public static String[] GetProducts() {
 		try {
 			String[] entries;
@@ -83,7 +86,7 @@ public class Util {
 			JSONObject root = (JSONObject) parser.parse(Util.GetJson("data.json"));
 			JSONArray users = (JSONArray) root.get("entries");
 			
-			entries = new String[users.size()];
+			entries = new String[users.size()]; //Наши продукты
 			
 			int i = 0;
 			for(Object entry : users) {
@@ -100,6 +103,7 @@ public class Util {
 		return null;
 	}
 	
+	//Получение коэффициентов по регионам
 	public static String[] GetLocations() {
 		try {
 			String[] entries;
@@ -107,7 +111,7 @@ public class Util {
 			JSONObject root = (JSONObject) parser.parse(Util.GetJson("data_regions.json"));
 			JSONArray users = (JSONArray) root.get("entries");
 			
-			entries = new String[users.size()];
+			entries = new String[users.size()]; //Наши региональные	 коэффициенты
 			
 			int i = 0;
 			for(Object entry : users) {

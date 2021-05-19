@@ -1,9 +1,17 @@
+/*
+Этот JS файл необходим для корректной работы админского функционала по редактированию
+коэффициентов продукции и регионов. Здесь имеется несколько функций-обработчиков для событий
+кнопок. Каждый из них выполняет свою задачу для обеспечения возможности редактирования.
+*/
+
+//Переменные для работы
 var adminUrl = "/WebCalc/EditController"
 var admin_entries = []
 var default_name = ""
 var default_price = 0
 var edit_type = ""
 
+//Линковка админ-событий
 function adminEvents() {
 	document.getElementById("actionToEditProductions").addEventListener("click", (event) => adminEdit(event, 0));
 	document.getElementById("actionToEditRegions").addEventListener("click", (event) => adminEdit(event, 1));
@@ -11,11 +19,13 @@ function adminEvents() {
 	document.getElementById("adminSave").addEventListener("click", adminSave);
 }
 
+//Добавление нового элемента
 function adminAddNewElement() {
 	admin_entries.push({name: default_name, price: default_price});
 	adminRender();
 }
 
+//Пересобирание DOM-элемента
 function adminRender() {
 	$("#adminContent").empty();
 	var i = 0;
@@ -48,18 +58,21 @@ function adminRender() {
 	});
 }
 
+//Смена название записи
 function adminNameChange(event) {
 	var str = String(event.srcElement.id);
 	var id = parseInt(str.substr(5,str.length - 5));
 	admin_entries[id].name = event.srcElement.value;
 }
 
+//Изменение значения цены
 function adminPriceChange(event) {
 	var str = String(event.srcElement.id);
 	var id = parseInt(str.substr(6,str.length - 6));
 	admin_entries[id].price = event.srcElement.value;
 }
 
+//Удаление записи
 function adminRemove(event) {
 	var str = String(event.srcElement.id);
 	var id = parseInt(str.substr(7,str.length - 7));
@@ -67,6 +80,7 @@ function adminRemove(event) {
 	adminRender();
 }
 
+//Сохранение результатов работы и отправка на сервер
 function adminSave() {
 	
 	var isOk = true
@@ -95,6 +109,7 @@ function adminSave() {
 	}
 }
 
+//Начало редактирования коэффицентов
 function adminEdit(event, type) {
 	var get_params = type == 0 ? "?type=products" : "?type=regions";
 	if (type == 0) {
@@ -118,4 +133,5 @@ function adminEdit(event, type) {
 
 }
 
+//Вызываем линкову событий с обработчиками
 adminEvents();

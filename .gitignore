@@ -12,3 +12,5 @@ buildNumber.properties
 .settings/
 artifacts/
 users.json
+data.json
+data_regions.json
