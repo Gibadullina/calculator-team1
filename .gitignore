@@ -14,3 +14,4 @@ artifacts/
 users.json
 data.json
 data_regions.json
+/bin/
