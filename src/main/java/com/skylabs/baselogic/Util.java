@@ -40,7 +40,7 @@ public class Util { //Вспомогательный класс для рабо�
 		String json = "";
 		try {
 			File f = new File(Path.of(path).toString());
-			if (!f.exists()) { //В случае, если нет определеного файла, мы его сначала создадим на основе шаблонов
+			if (!f.exists()) {
 				if (path.equals("users.json")) SaveString("users.json", DEFAULT_USERS);
 				else if (path.equals("data.json")) SaveString("data.json", DEFAULT_PRODUCTS);
 				else if (path.equals("data_regions.json")) SaveString("data_regions.json", DEFAULT_REGIONS);
