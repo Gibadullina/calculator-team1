@@ -15,9 +15,9 @@ var manual = "Данный калькулятор предназначен дл�
 var developers = "Калькулятор был разработан студентами группы <strong>ПИ-221</strong>: " + "<br/>Рафиков Данил" +"<br/>Катасонов Серафим" +"<br/>Гибадуллина Элина" +"<br/>Газин Даниэль";
 
 //URL адреса сервлетов сервера
-var serverUrl = "/WebCalc/CalculatorController";
-var exportUrl = "/WebCalc/ExportController";
-var exitUrl = "/WebCalc/ExitController";
+var serverUrl = "/CalculatorController";
+var exportUrl = "/ExportController";
+var exitUrl = "/ExitController";
 
 //Линковка событий с обработчиками
 function linkEvents() {
