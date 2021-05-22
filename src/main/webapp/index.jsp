@@ -12,15 +12,18 @@
 	<link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
+	<div class="vanta-background">
+	    
+	 </div>
+	 
+	<div class="container content" id="authRoot">
+	        <h2>Калькулятор</h2>
+	        <div class="buttons">
+	        	<button class="btn btn-primary btn-present" id="btnRegister">Регистрация</button>
+	        	<button class="btn btn-primary btn-present" id="btnAuth">Авторизация</button>
+	        </div>
+	</div>
 	
-    <div class="container content" id="authRoot">
-        <h2>Калькулятор</h2>
-        <div class="buttons">
-        	<button class="btn btn-primary" id="btnRegister">Регистрация</button>
-        	<button class="btn btn-primary" id="btnAuth">Авторизация</button>
-        </div>
-    </div>
-
     <!-- Modals -->
     <div class="modal fade" id="modalAuth" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -114,5 +117,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/auth.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+	<script>
+	VANTA.GLOBE({
+	  el: ".vanta-background",
+	  mouseControls: true,
+	  touchControls: true,
+	  gyroControls: false,
+	  minHeight: 200.00,
+	  minWidth: 200.00,
+	  scale: 1.00,
+	  scaleMobile: 1.00
+	})
+	</script>
 </body>
 </html>

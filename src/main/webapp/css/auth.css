@@ -9,9 +9,10 @@ body {
 .content {
     width: 300px;
     height: 200px;
-    box-shadow: 0 0 10px darkgray;
-    background-color: white;
-    margin-top: 200px;
+    /*box-shadow: 0 0 10px darkgray;*/
+    background: linear-gradient(to top left,#6742A0, #A53E5E);
+    margin-top: 250px;
+    margin-left: 300px;
     border-radius: 12px;
     text-align: center;
     padding: 10px;
@@ -37,4 +38,24 @@ body {
     width: 200px;
     border-radius: 12px;
     font-weight: bold;
+}
+.btn-present {
+	background: linear-gradient(to top right, #3D2255, #5C1E54);
+    outline: none !important;
+    border: none;
+}
+.btn-present:focus {
+	outline: none;
+}
+
+.vanta-background {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+h2 {
+	color: white;
 }
