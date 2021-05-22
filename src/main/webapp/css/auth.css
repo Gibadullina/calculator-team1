@@ -17,6 +17,7 @@ body {
     text-align: center;
     padding: 10px;
     transform: scale(0);
+    opacity: .9;
 }
 .animation {
 	transition: .5s all ease-in-out;
@@ -43,9 +44,13 @@ body {
 	background: linear-gradient(to top right, #3D2255, #5C1E54);
     outline: none !important;
     border: none;
+    transition: all ease-in-out .25s;
 }
 .btn-present:focus {
 	outline: none;
+}
+.btn-present:hover {
+	transform: scale(1.1);
 }
 
 .vanta-background {
