@@ -39,7 +39,7 @@ public class Util { //Вспомогательный класс для рабо�
 	public static String GetJson(String path) {	
 		String json = "";
 		try {
-			File f = new File(Path.of(path).toString());
+			File f = new File(path);
 			if (!f.exists()) {
 				if (path.equals("users.json")) SaveString("users.json", DEFAULT_USERS);
 				else if (path.equals("data.json")) SaveString("data.json", DEFAULT_PRODUCTS);
