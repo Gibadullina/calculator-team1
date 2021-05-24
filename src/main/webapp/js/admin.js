@@ -5,7 +5,7 @@
 */
 
 //Переменные для работы
-var adminUrl = "/EditController"
+var adminUrl = "/WebCalc/EditController"
 var admin_entries = []
 var default_name = ""
 var default_price = 0

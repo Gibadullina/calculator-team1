@@ -6,8 +6,8 @@ AJAX для обеспечения лучшей интерактивности �
 
 
 //URL адреса сервлетов сервера
-var login_url = "/AuthController";
-var register_url = "/RegisterController";
+var login_url = "/WebCalc/AuthController";
+var register_url = "/WebCalc/RegisterController";
 
 //Линковка кнопки регистрации для вызова модального окна регистрации
 $("#btnRegister").click(function(event) {
